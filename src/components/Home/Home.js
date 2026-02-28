@@ -94,6 +94,7 @@ function Home() {
                   <a
                     href="https://github.com/GavinHemsada"
                     target="_blank"
+                    rel="noreferrer"
                     className="orbit-btn btn-pos-3"
                     title="GitHub"
                   >
@@ -103,6 +104,7 @@ function Home() {
                   <a
                     href="https://www.linkedin.com/in/gavin-hemsada-a2a86b24a/"
                     target="_blank"
+                    rel="noreferrer"
                     className="orbit-btn btn-pos-4"
                     title="LinkedIn"
                   >
