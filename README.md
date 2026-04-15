@@ -1,86 +1,72 @@
-<h2 align="center">
-  Gavin Hemsada's Portfolio Website<br/>
-</h2>
+# DevByGavin | Premium Portfolio
 
-<br/>
+Welcome to the official repository for **DevByGavin**. This project is a high-performance, visually stunning web application built with **Next.js**, **Three.js**, and **Framer Motion**. It serves as a comprehensive showcase of modern web development, 3D interactivity, and technical craftsmanship.
 
-<center>
+> "Where code meets creativity."
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) &nbsp;
-[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) &nbsp;
-[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com) &nbsp;
-![GitHub Repo stars](https://img.shields.io/github/stars/GavinHemsada/Portfolio?color=red&logo=github&style=for-the-badge) &nbsp;
-![GitHub forks](https://img.shields.io/github/forks/GavinHemsada/Portfolio?color=red&logo=github&style=for-the-badge)
+---
 
-</center>
+## ✨ Features
 
-<h3 align="center">
-    🔹
-    <a href="https://github.com/GavinHemsada/Portfolio/issues">Report Bug</a> &nbsp; &nbsp;
-    🔹
-    <a href="https://github.com/GavinHemsada/Portfolio/issues">Request Feature</a>
-</h3>
+-   **🌌 Immersive 3D Environments**: Dynamic backgrounds and interactive elements using `React Three Fiber` and `Three.js`.
+-   **🎭 Smooth Orchestrated Animations**: Seamless transitions and scroll-triggered effects powered by `Framer Motion`.
+-   **📱 Fully Responsive Design**: Optimized for everything from mobile devices to ultra-wide monitors.
+-   **⚡ Performance First**: Custom-optimized 3D rendering and Next.js App Router for near-instant load times.
+-   **📐 Modular Architecture**: Clean, reusable component system for scalability and maintainability.
 
-## Overview
+## 📍 Navigation
 
-This is the personal portfolio repository of **Gavin Hemsada**, showcasing projects, skills, and experience.
+-   **Home**: The entry point with high-impact visuals and hero interactions.
+-   **About**: A deep dive into my professional journey, skills, and design philosophy.
+-   **Works**: A curated grid of projects featuring interactive case studies.
+-   **Contact**: A streamlined, modern way to get in touch.
 
-## Built With
+## 🛠️ Tech Stack
 
-This application is built with modern web technologies:
+-   **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+-   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+-   **3D Rendering**: [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) & [Three.js](https://threejs.org/)
+-   **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+-   **Icons**: [Lucide React](https://lucide.dev/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
 
-- **React.js**
-- **Node.js**
-- **Express.js**
-- **CSS3**, **React-Bootstrap**
+## 🚀 Getting Started
 
-## Features
+1.  **Clone & Install**:
+    ```bash
+    git clone https://github.com/GavinHemsada/Portfolio.git
+    cd Portfolio
+    npm install
+    ```
+2.  **Develop**:
+    ```bash
+    npm run dev
+    ```
+3.  **View**: Open [http://localhost:3000](http://localhost:3000)
 
-- **📖 Multi-Page Layout**
-- **🎨 Styled with React-Bootstrap & Custom CSS**
-- **📱 Fully Responsive Design**
+## 🏎️ Performance Optimizations
 
-## Getting Started
+To ensure smooth 60FPS performance even with complex 3D scenes:
+-   **Viewport Culling**: Rendering only what's visible to the camera.
+-   **Instance Optimization**: Using `InstancedMesh` for repetitive 3D elements.
+-   **Asset Compression**: 3D models and images are optimized for web delivery.
+-   **Lazy Loading**: Heavy components and 3D scenes are loaded on demand.
 
-To get a local copy up and running, follow these simple steps.
+## 📁 Project Structure
 
-### Prerequisites
+```text
+├── app/               # Next.js App Router (pages: about, works, contact)
+├── components/        # UI & 3D components
+├── public/            # Optimized assets (GLB models, icons, video)
+├── styles/            # Global styling systems
+└── convert.py         # Utility script for asset processing
+```
 
-You will need `Node.js` and `npm` installed globally on your machine.
+## 📧 Connect
 
-### Installation & Setup
+-   **GitHub**: [@GavinHemsada](https://github.com/GavinHemsada)
+-   **LinkedIn**: [Gavin Hemsada](https://linkedin.com) (Placeholder)
+-   **Email**: contact@gavinhemsada.dev
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/GavinHemsada/Portfolio.git
-   ```
-2. **Navigate into the project directory:**
-   ```sh
-   cd Portfolio
-   ```
-3. **Install NPM packages:**
-   ```sh
-   npm install
-   ```
-4. **Run the application:**
-   ```sh
-   npm start
-   ```
-
-Runs the app in development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser. 
-The page will reload if you make any edits.
-
-## Usage Instructions
-
-Open the project folder and navigate to `/src/components/`. 
-You will find all the components used, and you can edit or extend the information according to your needs.
-
-## Connect with me
-
-- [GitHub](https://github.com/GavinHemsada)
-- [LinkedIn](https://www.linkedin.com/in/gavin-hemsada-a2a86b24a/)
-
-### Support
-
-Give a ⭐ if you like this project!
+---
+*Developed with focus and precision by Gavin Hemsada*
