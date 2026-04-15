@@ -119,7 +119,10 @@ export default function Hero() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-8"
         >
-          <button className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:scale-105 hover:bg-gray-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+          <button
+            className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:scale-105 hover:bg-gray-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+            onClick={() => (window.location.href = "/works")}
+          >
             Explore My Work
           </button>
           <button className="group w-full sm:w-auto flex items-center justify-center space-x-3 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-300">
