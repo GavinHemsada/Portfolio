@@ -1,3 +1,18 @@
+export const metadata = {
+  title: "Contact Gavin | Software Engineer in Sri Lanka",
+  description:
+    "Contact Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka. Get in touch for web development projects and collaborations.",
+  keywords: [
+    "Gavin",
+    "Gavin Hemsada",
+    "contact",
+    "software engineer",
+    "software developer",
+    "Sri Lanka",
+    "web development",
+    "portfolio",
+  ],
+};
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
