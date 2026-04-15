@@ -163,7 +163,10 @@ export default function ProjectsGrid() {
                   initial={{ opacity: 0, x: isEven ? -80 : 80 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{
+                    duration: 0.85,
+                    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+                  }}
                   className="relative group"
                 >
                   <div className="relative rounded-3xl overflow-hidden aspect-video border border-gray-800/60 shadow-2xl">
@@ -213,7 +216,7 @@ export default function ProjectsGrid() {
                   transition={{
                     duration: 0.85,
                     delay: 0.12,
-                    ease: [0.16, 1, 0.3, 1],
+                    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
                   }}
                   className="space-y-6"
                 >

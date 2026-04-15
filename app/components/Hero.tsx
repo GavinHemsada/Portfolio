@@ -20,7 +20,14 @@ export default function Hero() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      },
+    },
   };
 
   return (
@@ -42,16 +49,20 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="flex items-center justify-center">
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center justify-center"
+        >
           <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 text-sm text-gray-200 border border-gray-800/80 rounded-2xl sm:rounded-full pr-3 pl-1.5 py-1.5 bg-[#0a0a0a]/80 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] group">
-            
             {/* Left Icon block */}
             <div className="bg-[#F3FE00] text-black w-8 h-8 rounded-[10px] flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(243,254,0,0.2)]">
               <FaCode size={16} />
             </div>
 
             {/* Text */}
-            <span className="font-semibold tracking-wide px-1">Trusted to build scalable architectures with</span>
+            <span className="font-semibold tracking-wide px-1">
+              Trusted to build scalable architectures with
+            </span>
 
             {/* Tech Stack Icons (Overlapping) */}
             <div className="flex -space-x-3 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pt-1 sm:pt-0 pb-1 sm:pb-0">
@@ -71,11 +82,13 @@ export default function Hero() {
                 <FaNodeJs size={15} className="text-[#339933]" />
               </div>
             </div>
-
           </div>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-5xl sm:text-7xl md:text-9xl font-black leading-[0.85] tracking-tighter max-w-[1200px] mx-auto uppercase">
+        <motion.h1
+          variants={itemVariants}
+          className="text-5xl sm:text-7xl md:text-9xl font-black leading-[0.85] tracking-tighter max-w-[1200px] mx-auto uppercase"
+        >
           Creative <br />
           <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-600">
             Intelligence
@@ -83,7 +96,7 @@ export default function Hero() {
           <br />
           <span className="relative inline-block mt-2">
             In Every Pixel
-            <motion.span 
+            <motion.span
               initial={{ rotate: -20, scale: 0.5, opacity: 0 }}
               animate={{ rotate: 12, scale: 1, opacity: 1 }}
               transition={{ delay: 1.2, type: "spring", damping: 12 }}
@@ -94,11 +107,18 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="text-gray-400 md:text-xl max-w-2xl mx-auto px-4 font-light leading-relaxed pt-2">
-          I build dynamic and visually stunning digital experiences designed to highly scale your online presence.
+        <motion.p
+          variants={itemVariants}
+          className="text-gray-400 md:text-xl max-w-2xl mx-auto px-4 font-light leading-relaxed pt-2"
+        >
+          I build dynamic and visually stunning digital experiences designed to
+          highly scale your online presence.
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-8">
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-8"
+        >
           <button className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:scale-105 hover:bg-gray-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
             Explore My Work
           </button>
@@ -112,15 +132,17 @@ export default function Hero() {
       </motion.div>
 
       {/* Scroll Down Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
-        <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-semibold">Scroll</span>
-        <motion.div 
-          animate={{ y: [0, 10, 0] }} 
+        <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-semibold">
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           className="w-[1px] h-16 bg-gradient-to-b from-white/40 via-white/10 to-transparent"
         />

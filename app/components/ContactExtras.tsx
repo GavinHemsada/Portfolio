@@ -10,7 +10,11 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   }),
 };
 
@@ -130,8 +134,12 @@ export default function ContactExtras() {
             viewport={{ once: true }}
             className="space-y-3"
           >
-            <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">— GET IN TOUCH</p>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Ways to Reach Me</h2>
+            <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">
+              — GET IN TOUCH
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
+              Ways to Reach Me
+            </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -150,18 +158,31 @@ export default function ContactExtras() {
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: `${card.color}18`, color: card.color }}
+                  style={{
+                    backgroundColor: `${card.color}18`,
+                    color: card.color,
+                  }}
                 >
                   {card.icon}
                 </div>
                 <div>
-                  <p className="text-gray-500 text-xs font-semibold tracking-widest uppercase mb-1">{card.label}</p>
-                  <p className="text-white font-bold text-sm leading-snug">{card.value}</p>
+                  <p className="text-gray-500 text-xs font-semibold tracking-widest uppercase mb-1">
+                    {card.label}
+                  </p>
+                  <p className="text-white font-bold text-sm leading-snug">
+                    {card.value}
+                  </p>
                   <p className="text-gray-500 text-xs mt-1">{card.sub}</p>
                 </div>
-                <div className="flex items-center gap-1 text-xs font-semibold mt-auto" style={{ color: card.color }}>
+                <div
+                  className="flex items-center gap-1 text-xs font-semibold mt-auto"
+                  style={{ color: card.color }}
+                >
                   <span>Connect</span>
-                  <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight
+                    size={12}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
                 </div>
               </motion.a>
             ))}
@@ -180,8 +201,12 @@ export default function ContactExtras() {
             className="flex flex-col md:flex-row items-center justify-between gap-10"
           >
             <div className="space-y-2">
-              <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">— FIND ME ONLINE</p>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">Let's Connect on Social</h2>
+              <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">
+                — FIND ME ONLINE
+              </p>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+                Let's Connect on Social
+              </h2>
             </div>
 
             <div className="flex flex-wrap gap-4 justify-center md:justify-end">
@@ -200,10 +225,15 @@ export default function ContactExtras() {
                 >
                   <span style={{ color: s.color }}>{s.icon}</span>
                   <div>
-                    <p className="text-white text-sm font-bold leading-none">{s.label}</p>
+                    <p className="text-white text-sm font-bold leading-none">
+                      {s.label}
+                    </p>
                     <p className="text-gray-500 text-xs mt-0.5">{s.handle}</p>
                   </div>
-                  <ArrowUpRight size={14} className="text-gray-600 group-hover:text-white ml-2 transition-colors" />
+                  <ArrowUpRight
+                    size={14}
+                    className="text-gray-600 group-hover:text-white ml-2 transition-colors"
+                  />
                 </motion.a>
               ))}
             </div>
@@ -221,16 +251,22 @@ export default function ContactExtras() {
             viewport={{ once: true }}
             className="space-y-6 md:sticky md:top-24"
           >
-            <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">— QUICK ANSWERS</p>
+            <p className="text-[#F3FE00] text-sm font-bold tracking-[0.3em] uppercase">
+              — QUICK ANSWERS
+            </p>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight">
               Before You <br /> Reach Out
             </h2>
             <p className="text-gray-400 leading-relaxed">
-              These are the most common questions I get. Still have something specific? Just drop me a message below!
+              These are the most common questions I get. Still have something
+              specific? Just drop me a message below!
             </p>
             <div className="flex items-center gap-3 mt-4 text-gray-300">
               <MessageCircle size={16} className="text-[#F3FE00]" />
-              <span className="text-sm font-medium">Usually reply within <strong className="text-white">24 hours</strong></span>
+              <span className="text-sm font-medium">
+                Usually reply within{" "}
+                <strong className="text-white">24 hours</strong>
+              </span>
             </div>
           </motion.div>
 
