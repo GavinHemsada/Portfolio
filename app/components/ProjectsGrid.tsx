@@ -1,10 +1,121 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 
+const PROJECTS_PER_PAGE = 5;
+
 const projects = [
+  {
+    title: "Tailor Made Apparels — Garment Manufacturing",
+    category: "Next.js Corporate Website",
+    description:
+      "A premium corporate website for a Sri Lankan garment factory and textile manufacturer established in 2013. Showcases bespoke suiting, fabric manufacturing, private labeling, bulk production, and global export reach across the Maldives, Japan, UK, and more. Features an interactive project gallery, partnership highlights, and a streamlined inquiry flow for international brand partners.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "App Router",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Responsive Design",
+    ],
+    image: "/projects/tailorMade.png",
+    github: "#",
+    live: "https://www.tailormadeapparels.lk/",
+    year: "2026",
+  },
+  {
+    title: "Colombo PVC Center — E-Commerce Store",
+    category: "Next.js + .NET E-Commerce Platform",
+    description:
+      "A full-stack e-commerce platform for a leading PVC pipes, fittings, and plumbing supplies retailer in Sri Lanka. Customers browse S-Lon, Anton, National, ERA, and other trusted brands with promotion pricing, wholesale rates, cart, and checkout. Built with a Next.js storefront and a .NET API for catalog, orders, and inventory management with fast delivery across Colombo and the island.",
+    tech: [
+      "Next.js",
+      ".NET",
+      "TypeScript",
+      "E-Commerce",
+      "Tailwind CSS",
+      "REST API",
+    ],
+    image: "/projects/colombopvc.png",
+    github: "#",
+    live: "https://www.colombopvc.lk/",
+    year: "2025",
+  },
+  {
+    title: "MyMatch.lk — Matrimonial Platform",
+    category: "Next.js + .NET Matchmaking Platform",
+    description:
+      "A trusted Sri Lankan matrimonial platform connecting families through verified profiles, advanced search, and secure communication. Supports brides and grooms, professional matchmaker dashboards with unlimited client profiles, subscription tiers, interest matching, and privacy-first contact controls. The Next.js frontend pairs with a .NET backend for authentication, profiles, and billing.",
+    tech: [
+      "Next.js",
+      ".NET",
+      "TypeScript",
+      "Authentication",
+      "Subscriptions",
+      "Tailwind CSS",
+    ],
+    image: "/projects/myMatch.png",
+    github: "#",
+    live: "https://mymatchlk.vercel.app/",
+    year: "2025",
+  },
+  {
+    title: "Volare Group — Corporate Website",
+    category: "Next.js Multilingual Business Portal",
+    description:
+      "A multilingual corporate website for Volare Group S.R.L.S, an Italy-based diversified services company operating since 2020. Presents six core divisions—hotel management, cleaning services, agency representation, education consulting, vehicle rental, and event coordination—with vision and mission storytelling, division deep-dives, and a contact form for consultations and partnerships.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "i18n",
+      "App Router",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
+    image: "/projects/volare.png",
+    github: "#",
+    live: "https://volarewebsite.vercel.app/en",
+    year: "2025",
+  },
+  {
+    title: "Armenian Cultural Center — Campus Portal",
+    category: "Next.js Education & Community Website",
+    description:
+      "A community and education portal for the Armenian Cultural Center featuring campus life, notice boards with dated announcements, blog and news sections, and campus visit scheduling. Designed to present programs, events, and cultural activities in a vibrant, accessible layout that helps prospective students and families explore center life and stay informed.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "App Router",
+      "Tailwind CSS",
+      "CMS-ready",
+      "Responsive Design",
+    ],
+    image: "/projects/amaricanculture.png",
+    github: "#",
+    live: "https://scholar-centre.vercel.app/campus-life",
+    year: "2025",
+  },
+  {
+    title: "IESC — International Education Scholar Centre",
+    category: "Next.js Education Consultancy Platform",
+    description:
+      "A UK-based education consultancy website helping students worldwide access scholarships and higher education abroad. Highlights 20+ study destinations, 4,500+ students supported, and 100+ university partners with an interactive country explorer, free consultancy booking flow, and step-by-step guidance from eligibility through enrolment—all with transparent, no-fee positioning.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "App Router",
+      "Tailwind CSS",
+      "Booking Flow",
+      "SEO",
+    ],
+    image: "/projects/isec.png",
+    github: "#",
+    live: "https://education-web-smoky.vercel.app/",
+    year: "2025",
+  },
   {
     title: "Sri Lanka Tours & Travels Web Application",
     category: "Next.js 16 Travel Platform",
@@ -119,6 +230,22 @@ const containerVariants = {
 };
 
 export default function ProjectsGrid() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
+  const paginatedProjects = projects.slice(
+    startIndex,
+    startIndex + PROJECTS_PER_PAGE
+  );
+
+  const goToPage = useCallback((page: number) => {
+    const next = Math.min(Math.max(1, page), totalPages);
+    setCurrentPage(next);
+    projectsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [totalPages]);
+
   return (
     <section className="bg-black py-24 px-8 md:px-16 border-t border-gray-800/50">
       <div className="max-w-[1440px] mx-auto space-y-6">
@@ -142,15 +269,20 @@ export default function ProjectsGrid() {
         </motion.div>
 
         {/* Projects */}
+        <div ref={projectsRef} className="scroll-mt-24">
+        <AnimatePresence mode="wait">
         <motion.div
+          key={currentPage}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          animate="visible"
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.35 }}
           className="space-y-40"
         >
-          {projects.map((project, i) => {
+          {paginatedProjects.map((project, i) => {
             const isEven = i % 2 === 0;
+            const hasGithub = project.github !== "#";
             return (
               <div
                 key={project.title}
@@ -185,14 +317,16 @@ export default function ProjectsGrid() {
 
                     {/* Hover links */}
                     <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
-                      >
-                        <FaGithub size={16} /> GitHub
-                      </a>
+                      {hasGithub && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
+                        >
+                          <FaGithub size={16} /> GitHub
+                        </a>
+                      )}
                       <a
                         href={project.live}
                         target="_blank"
@@ -244,19 +378,21 @@ export default function ProjectsGrid() {
 
                   {/* CTA Buttons */}
                   <div className="flex flex-wrap gap-4 pt-2">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn flex items-center gap-2 border border-gray-700 hover:border-white text-gray-300 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
-                    >
-                      <FaGithub size={16} />
-                      View Code
-                      <ArrowUpRight
-                        size={14}
-                        className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
-                      />
-                    </a>
+                    {hasGithub && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/btn flex items-center gap-2 border border-gray-700 hover:border-white text-gray-300 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                      >
+                        <FaGithub size={16} />
+                        View Code
+                        <ArrowUpRight
+                          size={14}
+                          className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
+                        />
+                      </a>
+                    )}
                     <a
                       href={project.live}
                       target="_blank"
@@ -276,6 +412,67 @@ export default function ProjectsGrid() {
             );
           })}
         </motion.div>
+        </AnimatePresence>
+
+        {/* Pagination */}
+        <nav
+          aria-label="Projects pagination"
+          className="mt-20 pt-12 border-t border-gray-800/50 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <p className="text-sm text-gray-500 font-mono">
+            Showing{" "}
+            <span className="text-gray-300">
+              {startIndex + 1}–{Math.min(startIndex + PROJECTS_PER_PAGE, projects.length)}
+            </span>{" "}
+            of <span className="text-gray-300">{projects.length}</span> projects
+          </p>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              aria-label="Previous page"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 text-gray-400 hover:border-[#F3FE00] hover:text-[#F3FE00] disabled:opacity-30 disabled:pointer-events-none transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className="flex items-center gap-1.5 px-1">
+              {Array.from({ length: totalPages }, (_, idx) => {
+                const page = idx + 1;
+                const isActive = page === currentPage;
+                return (
+                  <button
+                    key={page}
+                    type="button"
+                    onClick={() => goToPage(page)}
+                    aria-label={`Page ${page}`}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`min-w-[2.5rem] h-10 px-3 rounded-full text-sm font-bold transition-all duration-300 ${
+                      isActive
+                        ? "bg-[#F3FE00] text-black scale-105"
+                        : "border border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              aria-label="Next page"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 text-gray-400 hover:border-[#F3FE00] hover:text-[#F3FE00] disabled:opacity-30 disabled:pointer-events-none transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </nav>
+        </div>
       </div>
     </section>
   );
