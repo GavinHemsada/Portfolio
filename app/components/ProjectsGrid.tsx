@@ -4,10 +4,23 @@ import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import ProjectDeviceShowcase from "./ProjectDeviceShowcase";
 
 const PROJECTS_PER_PAGE = 5;
 
-const projects = [
+type Project = {
+  title: string;
+  category: string;
+  description: string;
+  tech: string[];
+  image: string;
+  mobileImage?: string;
+  github: string;
+  live: string;
+  year: string;
+};
+
+const projects: Project[] = [
   {
     title: "Tailor Made Apparels — Garment Manufacturing",
     category: "Next.js Corporate Website",
@@ -22,6 +35,7 @@ const projects = [
       "Responsive Design",
     ],
     image: "/projects/tailorMade.png",
+    mobileImage: "/projects/tailormade_mobile.png",
     github: "#",
     live: "https://www.tailormadeapparels.lk/",
     year: "2026",
@@ -40,6 +54,7 @@ const projects = [
       "REST API",
     ],
     image: "/projects/colombopvc.png",
+    mobileImage: "/projects/colombopvc_mobile.png",
     github: "#",
     live: "https://www.colombopvc.lk/",
     year: "2025",
@@ -58,6 +73,7 @@ const projects = [
       "Tailwind CSS",
     ],
     image: "/projects/myMatch.png",
+    mobileImage: "/projects/myMatch_mobile.png",
     github: "#",
     live: "https://mymatchlk.vercel.app/",
     year: "2025",
@@ -76,6 +92,7 @@ const projects = [
       "Framer Motion",
     ],
     image: "/projects/volare.png",
+    mobileImage: "/projects/volare_mobile.png",
     github: "#",
     live: "https://volarewebsite.vercel.app/en",
     year: "2025",
@@ -94,6 +111,7 @@ const projects = [
       "Responsive Design",
     ],
     image: "/projects/amaricanculture.png",
+    mobileImage: "/projects/amaricanculture_mobile.png",
     github: "#",
     live: "https://scholar-centre.vercel.app/campus-life",
     year: "2025",
@@ -112,6 +130,7 @@ const projects = [
       "SEO",
     ],
     image: "/projects/isec.png",
+    mobileImage: "/projects/isec_mobile.png",
     github: "#",
     live: "https://education-web-smoky.vercel.app/",
     year: "2025",
@@ -301,17 +320,39 @@ export default function ProjectsGrid() {
                   }}
                   className="relative group"
                 >
-                  <div className="relative rounded-3xl overflow-hidden aspect-video border border-gray-800/60 shadow-2xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div
+                    className={`relative overflow-hidden shadow-2xl ${
+                      project.mobileImage
+                        ? "rounded-3xl border border-gray-200 bg-gradient-to-br from-gray-100 via-white to-gray-200 p-5 sm:p-8"
+                        : "rounded-3xl aspect-video border border-gray-800/60"
+                    }`}
+                  >
+                    {project.mobileImage ? (
+                      <ProjectDeviceShowcase
+                        desktopSrc={project.image}
+                        mobileSrc={project.mobileImage}
+                        alt={project.title}
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                      />
+                    )}
+                    {/* Overlay — only on single-image projects */}
+                    {!project.mobileImage && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+                    )}
 
                     {/* Year badge */}
-                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-gray-700 rounded-full px-3 py-1 text-xs text-gray-300 font-mono">
+                    <div
+                      className={`absolute top-4 left-4 backdrop-blur-md rounded-full px-3 py-1 text-xs font-mono ${
+                        project.mobileImage
+                          ? "bg-white/90 border border-gray-300 text-gray-700"
+                          : "bg-black/70 border border-gray-700 text-gray-300"
+                      }`}
+                    >
                       {project.year}
                     </div>
 
