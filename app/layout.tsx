@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import StructuredData from "./components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,9 @@ import MouseGlow from "./components/MouseGlow";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gavinhemsandaportfolio.netlify.app/"),
+  verification: {
+    google: "TnFAO3FffeS8CxX4q97kb3KqhOY43siud9aprDkBQXA",
+  },
   title: "DevByGavin | Software Engineer & Developer in Sri Lanka",
   description:
     "Gavin (Gavin Hemsada) is a professional software engineer and developer specializing in full-stack web development, scalable applications, and modern software solutions. Based in Sri Lanka.",
@@ -57,7 +61,7 @@ export const metadata: Metadata = {
     "Beauty and cosmetics landing page for influencers and brands",
     "Home services landing page for plumbing and HVAC leads",
     "Author landing page for book pre-order and launch events",
-    "Fintech landing page for banking and digital payment apps"
+    "Fintech landing page for banking and digital payment apps",
   ],
   icons: {
     icon: "/logo_with_blackbg.png",
@@ -96,8 +100,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "DevByGavin Portfolio",
+    url: "https://gavinhemsandaportfolio.netlify.app/",
+    description:
+      "Portfolio of Gavin Hemsada, a software engineer and developer in Sri Lanka.",
+  };
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Gavin Hemsada",
+    url: "https://gavinhemsandaportfolio.netlify.app/",
+    jobTitle: "Software Engineer",
+  };
+
   return (
     <html lang="en">
+      <head>
+        <StructuredData data={[websiteSchema, personSchema]} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >

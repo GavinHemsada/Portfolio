@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 
 import Navbar from "../components/Navbar";
@@ -7,10 +8,29 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { services } from "@/app/data/services";
 
-export const metadata = {
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/services",
+  },
   title: "Services | DevByGavin",
   description:
     "Explore all digital services from Gavin, including web design, web development, API development, optimization, and full-stack solutions.",
+  openGraph: {
+    title: "Services | DevByGavin",
+    description:
+      "Explore all digital services from Gavin, including web design, web development, API development, optimization, and full-stack solutions.",
+    url: "https://gavinhemsandaportfolio.netlify.app/services",
+    siteName: "DevByGavin Portfolio",
+    images: ["/logo_with_blackbg.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | DevByGavin",
+    description:
+      "Explore all digital services from Gavin, including web design, web development, API development, optimization, and full-stack solutions.",
+    images: ["/logo_with_blackbg.png"],
+  },
 };
 
 export default function ServicesPage() {

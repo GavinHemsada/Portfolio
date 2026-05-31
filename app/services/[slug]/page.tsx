@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import WhatsAppButton from "../../components/WhatsAppButton";
+import StructuredData from "../../components/StructuredData";
 import { getServiceBySlug, services } from "@/app/data/services";
 
 type ServicePageProps = {
@@ -29,8 +31,25 @@ export async function generateMetadata({
   }
 
   return {
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
     title: `${service.title} | Services | DevByGavin`,
     description: service.shortDescription,
+    openGraph: {
+      title: `${service.title} | Services | DevByGavin`,
+      description: service.shortDescription,
+      url: `https://gavinhemsandaportfolio.netlify.app/services/${slug}`,
+      siteName: "DevByGavin Portfolio",
+      images: [service.heroImage],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | Services | DevByGavin`,
+      description: service.shortDescription,
+      images: [service.heroImage],
+    },
   };
 }
 
@@ -42,13 +61,41 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     notFound();
   }
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.subtitle,
+    description: service.shortDescription,
+    provider: {
+      "@type": "Person",
+      name: "Gavin Hemsada",
+      url: "https://gavinhemsandaportfolio.netlify.app/",
+    },
+    areaServed: "Sri Lanka",
+    url: `https://gavinhemsandaportfolio.netlify.app/services/${slug}`,
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-black text-white font-sans selection:bg-yellow-400 selection:text-black scroll-smooth">
       <Navbar />
+      <StructuredData data={[serviceSchema, faqSchema]} />
 
       <section className="border-b border-gray-800/60 bg-[#090909] px-6 py-16 md:px-12 md:py-20">
         <div className="mx-auto max-w-[1200px] space-y-8">
-
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F3FE00]">
@@ -63,11 +110,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-gray-800/70">
-              <img
-                src={service.heroImage}
-                alt={service.title}
-                className="h-[360px] w-full object-cover"
-              />
+              <div className="relative h-[360px] w-full">
+                <Image
+                  src={service.heroImage}
+                  alt={service.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -116,11 +168,15 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
           <aside className="space-y-8">
             <div className="overflow-hidden rounded-2xl border border-gray-800/70">
-              <img
-                src={service.detailImage}
-                alt={`${service.title} details`}
-                className="h-[300px] w-full object-cover"
-              />
+              <div className="relative h-[300px] w-full">
+                <Image
+                  src={service.detailImage}
+                  alt={`${service.title} details`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             <div className="rounded-2xl border border-gray-800 bg-[#101010] p-6 space-y-4">

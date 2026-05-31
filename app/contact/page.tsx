@@ -1,4 +1,8 @@
+import type { Metadata } from "next";
 export const metadata = {
+  alternates: {
+    canonical: "/contact",
+  },
   title: "Contact Gavin | Software Engineer in Sri Lanka",
   description:
     "Contact Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka. Get in touch for web development projects and collaborations.",
@@ -35,8 +39,24 @@ export const metadata = {
     "Beauty and cosmetics landing page for influencers and brands",
     "Home services landing page for plumbing and HVAC leads",
     "Author landing page for book pre-order and launch events",
-    "Fintech landing page for banking and digital payment apps"
+    "Fintech landing page for banking and digital payment apps",
   ],
+  openGraph: {
+    title: "Contact Gavin | Software Engineer in Sri Lanka",
+    description:
+      "Contact Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka.",
+    url: "https://gavinhemsandaportfolio.netlify.app/contact",
+    siteName: "DevByGavin Portfolio",
+    images: ["/logo_with_blackbg.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Gavin | Software Engineer in Sri Lanka",
+    description:
+      "Contact Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka.",
+    images: ["/logo_with_blackbg.png"],
+  },
 };
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";

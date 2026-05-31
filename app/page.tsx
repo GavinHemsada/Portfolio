@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechStack from "./components/TechStack";
@@ -11,7 +12,10 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 
-export const metadata = {
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
   title: "Gavin | Software Engineer & Developer in Sri Lanka",
   description:
     "Welcome to the portfolio of Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka. Explore projects, skills, and services in modern web development.",
@@ -53,8 +57,24 @@ export const metadata = {
     "Beauty and cosmetics landing page for influencers and brands",
     "Home services landing page for plumbing and HVAC leads",
     "Author landing page for book pre-order and launch events",
-    "Fintech landing page for banking and digital payment apps"
+    "Fintech landing page for banking and digital payment apps",
   ],
+  openGraph: {
+    title: "Gavin | Software Engineer & Developer in Sri Lanka",
+    description:
+      "Welcome to the portfolio of Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka.",
+    url: "https://gavinhemsandaportfolio.netlify.app/",
+    siteName: "DevByGavin Portfolio",
+    images: ["/logo_with_blackbg.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gavin | Software Engineer & Developer in Sri Lanka",
+    description:
+      "Welcome to the portfolio of Gavin (Gavin Hemsada), a professional software engineer and developer in Sri Lanka.",
+    images: ["/logo_with_blackbg.png"],
+  },
 };
 
 export default function Home() {
